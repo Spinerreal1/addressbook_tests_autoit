@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoItX3Lib;
 
 
 namespace addressbook_tests_autoit
@@ -9,6 +10,7 @@ namespace addressbook_tests_autoit
     public class GroupHelper : HelperBase
     {
         public static string GROUPWINTITLE = "Group editor";
+        public static string GROUPDELETEWINTITLE = "Group delete";
         public GroupHelper(ApplicationManager manager) : base(manager) { }
 
         public List<GroupData> GetGroupList()
@@ -49,6 +51,27 @@ namespace addressbook_tests_autoit
         private void OpenGroupsDialogue()
         {
             aux.ControlClick(WINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d512");
+            aux.WinWait(GROUPWINTITLE);
+        }
+        public void Remove(int i)
+        {
+            OpenGroupsDialogue();
+            SelectGroup(i);
+            DeleteGroup();
+            CloseGroupsDialogue();
+        }
+        public void SelectGroup(int index)
+        {
+            aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51", "Select", "#0|#" + index, "");
+            aux.WinWait(GROUPWINTITLE);
+        }
+        public void DeleteGroup()
+        {
+            aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
+            aux.WinWait(GROUPDELETEWINTITLE);
+            aux.ControlClick(GROUPDELETEWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
+            aux.WinWait(GROUPDELETEWINTITLE);
+            aux.ControlClick(GROUPDELETEWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d53");
             aux.WinWait(GROUPWINTITLE);
         }
     }
