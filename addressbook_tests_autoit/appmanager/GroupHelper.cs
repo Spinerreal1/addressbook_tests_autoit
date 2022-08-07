@@ -10,7 +10,7 @@ namespace addressbook_tests_autoit
     public class GroupHelper : HelperBase
     {
         public static string GROUPWINTITLE = "Group editor";
-        public static string GROUPDELETEWINTITLE = "Group delete";
+        public static string GROUPDELETEWINTITLE = "Delete group";
         public GroupHelper(ApplicationManager manager) : base(manager) { }
 
         public List<GroupData> GetGroupList()
